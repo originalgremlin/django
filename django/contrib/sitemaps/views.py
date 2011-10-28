@@ -5,7 +5,7 @@ from django.core import urlresolvers
 from django.utils.encoding import smart_str
 from django.core.paginator import EmptyPage, PageNotAnInteger
 
-def index(request, sitemaps, template_name='sitemap_index.xml'):
+def index(request, sitemaps, template_name='sitemaps/sitemap_index.xml'):
     current_site = get_current_site(request)
     sites = []
     protocol = request.is_secure() and 'https' or 'http'
@@ -23,7 +23,7 @@ def index(request, sitemaps, template_name='sitemap_index.xml'):
     xml = loader.render_to_string(template_name, {'sitemaps': sites})
     return HttpResponse(xml, mimetype='application/xml')
 
-def sitemap(request, sitemaps, section=None, template_name='sitemap.xml'):
+def sitemap(request, sitemaps, section=None, template_name='sitemaps/sitemap.xml'):
     maps, urls = [], []
     if section is not None:
         if section not in sitemaps:
