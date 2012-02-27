@@ -8,7 +8,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger
 def index(request, sitemaps, template_name='sitemaps/sitemap_index.xml'):
     current_site = get_current_site(request)
     sites = []
-    protocol = 'https' #request.is_secure() and 'https' or 'http'
+    protocol = request.is_secure() and 'https' or 'http'
     for section, site in sitemaps.items():
         site.request = request
         if callable(site):
