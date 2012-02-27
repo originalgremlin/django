@@ -31,7 +31,7 @@ def ping_google(sitemap_url=None, ping_url=PING_URL):
 
     from django.contrib.sites.models import Site
     current_site = Site.objects.get_current()
-    url = "http://%s%s" % (current_site.domain, sitemap_url)
+    url = "https://%s%s" % (current_site.domain, sitemap_url)
     params = urllib.urlencode({'sitemap':url})
     urllib.urlopen("%s?%s" % (ping_url, params))
 
@@ -73,7 +73,7 @@ class Sitemap(object):
 
         urls = []
         for item in self.paginator.page(page).object_list:
-            loc = "http://%s%s" % (site.domain, self.__get('location', item))
+            loc = "https://%s%s" % (site.domain, self.__get('location', item))
             priority = self.__get('priority', item, None)
             url_info = {
                 'location':   loc,
